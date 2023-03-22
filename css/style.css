@@ -553,7 +553,7 @@ a i {
 }
 /* footer */
 footer{
-  background: url("./footer-bg.png");
+  background: url("../img/logo & bg/footer-bg.png");
   color: white;
   display: grid;
   place-items: center;
