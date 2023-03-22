@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="達康.come">
     <meta name="description" content="【達康.come】成立於2013年初，阿達、康康兩人從事專職搞笑、漫才表演歷時10年多。">
-    <meta name="keywords" content="達康.come, 達康, 阿達, 康康">
+    <meta name="keywords" content="達康.come, 達康, 阿達, 康康, 陳彥達, 何瑞康">
     <title>達康.come</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="icon" href="../img/logo & bg/logo.jpg">
@@ -20,6 +20,24 @@
 
   <body>
     <div id="app">
+      <!-- preloader -->
+      <div class="preloader">
+        <div class="preloader-img">
+          <img src="../img/preloader/dacome-AdobeExpress-unscreen.gif" alt="preloader">
+        </div>
+        <div class="preloader-text">
+          <p class="letter-1">L</p>
+          <p class="letter-2">O</p>
+          <p class="letter-3">A</p>
+          <p class="letter-4">D</p>
+          <p class="letter-5">I</p>
+          <p class="letter-6">N</p>
+          <p class="letter-7">G</p>
+          <p class="letter-8">.</p>
+          <p class="letter-9">.</p>
+          <p class="letter-10">.</p>
+        </div>
+      </div>
       <!-- nav -->
       <nav>
         <div class="nav-content">
@@ -367,6 +385,11 @@
       } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.esm-browser.min.js';
       const app = createApp({
         setup() {
+          // preloader
+          window.addEventListener('load',function() {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('hide-preloader');
+          })
           // 大圖
           const pictures = ref([
             {

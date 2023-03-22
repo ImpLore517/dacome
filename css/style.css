@@ -195,6 +195,108 @@ a {
 .border-blue {
   border-color: rgb(26, 33, 62);
 }
+/* preloader */
+.preloader{
+  z-index: 31;
+  background-color: white;
+  position: fixed;
+  visibility: visible;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.8;
+}
+
+.hide-preloader{
+  visibility: hidden;
+}
+
+.preloader-img{
+  position: fixed;
+  top: 40%;
+  bottom: 50%;
+  left: 45.5%;
+}
+
+.preloader-img img{
+  width: 150px;
+}
+
+.preloader-text{
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: calc(50% - 80px);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 5px;
+  color: black;
+  font-size: 20px;
+}
+
+.letter-1{
+  animation: up-down 5s linear infinite;
+}
+
+.letter-2{
+  animation: up-down 5s linear infinite;
+  animation-delay: 0.5s;
+}
+
+.letter-3{
+  animation: up-down 5s linear infinite;
+  animation-delay: 1s;
+}
+
+.letter-4{
+  animation: up-down 5s linear infinite;
+  animation-delay: 1.5s;
+}
+
+.letter-5{
+  animation: up-down 5s linear infinite;
+  animation-delay: 2s;
+}
+
+.letter-6{
+  animation: up-down 5s linear infinite;
+  animation-delay: 2.5s;
+}
+
+.letter-7{
+  animation: up-down 5s linear infinite;
+  animation-delay: 3s;
+}
+
+.letter-8{
+  animation: up-down 5s linear infinite;
+  animation-delay: 3.5s;
+}
+
+.letter-9{
+  animation: up-down 5s linear infinite;
+  animation-delay: 4s;
+}
+
+.letter-10{
+  animation: up-down 5s linear infinite;
+  animation-delay: 4.5s;
+}
+
+@keyframes up-down {
+  0%{
+    transform: translateY(0);
+  }
+  10%{
+    transform: translateY(-10px);
+  }
+  15%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
 /* nav */
 @font-face {
   font-family: 'cwTeXMing';
@@ -410,7 +512,7 @@ a i {
   text-decoration: none;
   border: 2px solid black;
   border-radius: 10px;
-  animation: bounce 2s ease-in-out infinite;
+  animation: bounce 2s linear infinite;
   visibility: hidden;
 }
 
