@@ -133,8 +133,9 @@ body {
   background: url(./bg.PNG);
 }
 
-.circle-font{
-  font-family: 粉圓體,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+.circle-font {
+  font-family: 粉圓體, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
+    Courier New, monospace;
 }
 
 h1 {
@@ -196,104 +197,104 @@ a {
   border-color: rgb(26, 33, 62);
 }
 /* preloader */
-.preloader{
+.preloader {
   z-index: 31;
   background-color: white;
   position: fixed;
   visibility: visible;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0.8;
 }
 
-.hide-preloader{
+.hide-preloader {
   visibility: hidden;
 }
 
-.preloader-img{
-  position: fixed;
-  top: 40%;
-  bottom: 50%;
-  left: 45.5%;
+.preloader-content {
+  display: grid;
+  place-content: center;
+  height: 100%;
 }
 
-.preloader-img img{
+.preloader-img {
+  display: grid;
+  justify-content: center;
+}
+
+.preloader-img img {
   width: 150px;
 }
 
-.preloader-text{
-  display: flex;
-  position: fixed;
-  top: 50%;
-  left: calc(50% - 80px);
+.preloader-text {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   letter-spacing: 5px;
   color: black;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.letter-1{
+.letter-1 {
   animation: up-down 5s linear infinite;
 }
 
-.letter-2{
+.letter-2 {
   animation: up-down 5s linear infinite;
   animation-delay: 0.5s;
 }
 
-.letter-3{
+.letter-3 {
   animation: up-down 5s linear infinite;
   animation-delay: 1s;
 }
 
-.letter-4{
+.letter-4 {
   animation: up-down 5s linear infinite;
   animation-delay: 1.5s;
 }
 
-.letter-5{
+.letter-5 {
   animation: up-down 5s linear infinite;
   animation-delay: 2s;
 }
 
-.letter-6{
+.letter-6 {
   animation: up-down 5s linear infinite;
   animation-delay: 2.5s;
 }
 
-.letter-7{
+.letter-7 {
   animation: up-down 5s linear infinite;
   animation-delay: 3s;
 }
 
-.letter-8{
+.letter-8 {
   animation: up-down 5s linear infinite;
   animation-delay: 3.5s;
 }
 
-.letter-9{
+.letter-9 {
   animation: up-down 5s linear infinite;
   animation-delay: 4s;
 }
 
-.letter-10{
+.letter-10 {
   animation: up-down 5s linear infinite;
   animation-delay: 4.5s;
 }
 
 @keyframes up-down {
-  0%{
+  0% {
     transform: translateY(0);
   }
-  10%{
+  10% {
     transform: translateY(-10px);
   }
-  15%{
+  15% {
     transform: translateY(0);
   }
-  100%{
+  100% {
     transform: translateY(0);
   }
 }
@@ -543,17 +544,17 @@ a i {
   height: 310px;
 }
 
-.text-indent-5{
+.text-indent-5 {
   text-indent: 80px !important;
 }
 
-.important{
+.important {
   color: red;
   font-weight: bold;
 }
 /* footer */
-footer{
-  background: url("../img/logo & bg/footer-bg.png");
+footer {
+  background: url('../img/logo & bg/footer-bg.png');
   color: white;
   display: grid;
   place-items: center;
