@@ -336,7 +336,7 @@ nav {
   text-decoration: none;
   font-size: 24px;
   letter-spacing: 1px;
-  transition: all 0.3s linear;
+  transition: all 0.05s linear;
   font-family: 'cwTeXMing';
   font-weight: bold;
 }
@@ -346,7 +346,7 @@ nav {
 }
 
 .nav-text:active {
-  height: 15px;
+  transform: translateY(8px);
 }
 
 a i {
@@ -560,4 +560,38 @@ footer {
   place-items: center;
   padding: 2rem;
   font-size: 18px;
+}
+
+@media screen and (max-width: 500px) {
+  .nav-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-text{
+    border-top: 2px solid white;
+    border-bottom: 0px;
+    width: 100%;
+    padding: 1rem;
+    transition: all 0.3s linear;
+  }
+
+  .nav-text:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-text:active{
+    transform: translateY(0);
+  }
+
+  .nav-text:nth-child(5n){
+    border-bottom: 2px solid white;
+  }
+
+  .links {
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
 }
