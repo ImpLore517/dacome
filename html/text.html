@@ -114,8 +114,8 @@
       </div>
       <!-- section1 -->
       <section class="container" id="about-dacon">
+        <h1 class="mb-1">關於達康</h1>
         <div class="title">
-          <h1 class="mb-1">關於達康</h1>
           <p>
             達康.come是由陳彥達（阿達）和何瑞康（康康）組成的台灣漫才搭檔組合，於2013年創立笑太夫漫才集團，由阿達（陳彥達）擔任團長，康康（何瑞康）擔任劇團總監，以推廣漫才創作、演出作為劇團的重點核心，並嘗試運用各種戲劇特性，結合漫才精神，發展各類型喜劇表現樣貌，未來更朝漫才發展之情境喜劇結合各種媒體運用為目標，期待讓表演更豐富，為觀眾帶來更多歡笑。
           </p>
@@ -189,10 +189,9 @@
               </li>
             </ul>
           </div>
-          <img src="../img/manzai.jpg" alt="maizai" />
+          <img src="../img/manzai.jpg" class="maizai" alt="maizai"/>
         </div>
-        <div class="content-text">
-          <h2 class="mb-1">漫才、相聲的不同之處</h2>
+          <h2 class="title">漫才、相聲的不同之處</h2>
           <div class="dif-video">
             <iframe
               width="560"
@@ -212,7 +211,6 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
-          </div>
         </div>
       </section>
       <!-- section3 -->
@@ -220,11 +218,13 @@
         <h1 class="mb-1">相關作品</h1>
         <!-- 好了啦！達康 -->
         <h2 class="mb-1">好了啦！達康</h2>
-        <p>
-          精心編排笑料不間斷的「漫才」
-          由你來出題考驗反應力的「即興節目」歌詞永遠沒道理但旋律總是那麼好聽的「晚安曲」
-          《好了啦》一次都給你！
-        </p>
+        <div class="content-text">
+          <p>
+            精心編排笑料不間斷的「漫才」
+            由你來出題考驗反應力的「即興節目」歌詞永遠沒道理但旋律總是那麼好聽的「晚安曲」
+            《好了啦》一次都給你！
+          </p>
+        </div>
         <div class="video mb-2 mt-1">
           <button
             type="submit"
@@ -257,9 +257,11 @@
         </div>
         <!-- 還在講 -->
         <h2 class="mb-1">達康還在講</h2>
-        <p>
-          達康.come加上好朋友哈利的Podcast節目，每週選聊話題，陪伴你度過不無聊的上班、通勤、開車，你的耳裡隨時有阿達康康與哈利魔性的笑聲。
-        </p>
+        <div class="content-text">
+          <p>
+            達康.come加上好朋友哈利的Podcast節目，每週選聊話題，陪伴你度過不無聊的上班、通勤、開車，你的耳裡隨時有阿達康康與哈利魔性的笑聲。
+          </p>
+        </div>
         <div class="video mb-2 mt-1">
           <button
             type="submit"
@@ -296,16 +298,18 @@
         </div>
         <!-- 集合囉！Play Boy Station！ -->
         <h2 class="mb-1">集合囉！Play Boy Station！</h2>
-        <p>
-          <span class="xbox">△</span> 達康.come ＆ 漫才少爺（まんざいぼんぼん）
-        </p>
+        <div class="content-text">
+          <p>
+            <span class="xbox">△</span> 達康.come ＆
+            漫才少爺（まんざいぼんぼん）
+          </p>
 
-        <p><span class="xbox">▢</span> 台日漫才師聯手出擊</p>
+          <p><span class="xbox">▢</span> 台日漫才師聯手出擊</p>
 
-        <p><span class="xbox">◯</span> 全新遊戲企劃型節目</p>
+          <p><span class="xbox">◯</span> 全新遊戲企劃型節目</p>
 
-        <p><span class="xbox">⨯</span> 每個月給你全新笑料</p>
-
+          <p><span class="xbox">⨯</span> 每個月給你全新笑料</p>
+        </div>
         <div class="video mb-2 mt-1">
           <button
             type="submit"
@@ -340,7 +344,7 @@
       <!-- section4 -->
       <section class="container" id="sell">
         <h1 class="border-blue">售票資訊</h1>
-        <div class="content ml-2">
+        <div class="content">
           <img src="../img/ticket/s7e2.png" class="ticket-img" />
           <div class="content-text">
             <h2 class="mb-1 circle-font">《好了啦！達康！》第七季第二集</h2>
@@ -359,7 +363,7 @@
             </p>
           </div>
         </div>
-        <div class="content ml-2">
+        <div class="content">
           <img src="../img/ticket/Yuntech.jpeg" class="ticket-img" />
           <div class="content-text">
             <h2 class="mb-1 circle-font">達康.COME笑現場IN雲泰表演廳</h2>
@@ -378,7 +382,7 @@
             </p>
           </div>
         </div>
-        <div class="content ml-2">
+        <div class="content">
           <img src="../img/ticket/guest.png" class="ticket-img" />
           <div class="content-text">
             <h2 class="mb-1 circle-font">傻孩子宅急便《這個殺手不太妙plus》</h2>
@@ -428,7 +432,7 @@
             preloader.classList.add('hide-preloader');
           });
           // nav-toggle(for 500px)
-          function navToggle () {
+          function navToggle() {
             const showLinks = document.querySelector('.links');
             const showSocials = document.querySelector('.socials');
 

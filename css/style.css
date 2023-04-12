@@ -177,10 +177,6 @@ a {
   margin-left: 1rem;
 }
 
-.ml-2 {
-  margin-left: 2rem;
-}
-
 .mr-1 {
   margin-right: 1rem;
 }
@@ -331,16 +327,16 @@ nav {
   width: 80px;
 }
 
-.nav-toggle{
+.nav-toggle {
   display: none;
 }
 
-.links{
+.links {
   display: flex;
   justify-content: space-between;
 }
 
-.links li a{
+.links li a {
   padding: 0 5rem;
   color: rgba(128, 128, 128, 0.5);
   text-decoration: none;
@@ -367,7 +363,7 @@ li i {
   height: 80px;
 }
 
-.socials{
+.socials {
   display: flex;
 }
 
@@ -428,41 +424,59 @@ li i {
 
 .content-text {
   margin: 0 3rem;
-  overflow: hidden;
 }
 /* section2 */
 .container:nth-child(odd) {
   color: rgb(26, 33, 62);
 }
 
+.title {
+  margin: 0 3rem;
+}
+
 .dif-video {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
 /* section3 */
 .video {
   display: flex;
+  justify-content: space-between;
   border: 3px solid rgba(0, 0, 0, 0.7);
   box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.7);
   border-radius: 30px;
+  height: calc(315px + 6rem);
   overflow: hidden;
   position: relative;
 }
 
 .content-video {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: calc(315px + 6rem);
-  left: 7%;
-  position: relative;
+  height: 100%;
+  position: absolute;
   overflow: hidden;
 }
 
 .itsOkVideo,
 .stillTalkVideo,
 .PBSVideo {
-  position: absolute;
   transition: all 0.3s linear;
   padding: 3rem 0;
+}
+
+.itsOkVideo:nth-child(odd),
+.stillTalkVideo:nth-child(odd),
+.PBSVideo:nth-child(odd){
+  margin-left: 10.1%;
+}
+
+.itsOkVideo:nth-child(even),
+.stillTalkVideo:nth-child(even),
+.PBSVideo:nth-child(even){
+  margin: 0 10.5%;
 }
 
 .side-arrow {
@@ -584,22 +598,23 @@ footer {
     flex-direction: column;
   }
 
-  .nav-title{
+  .nav-title {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
 
-  .nav-toggle{
+  .nav-toggle {
     display: block;
     background-color: transparent;
+    border: transparent;
     color: white;
     font-size: 36px;
     margin-right: 1rem;
     cursor: pointer;
   }
 
-  .links{
+  .links {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -609,7 +624,7 @@ footer {
     overflow: hidden;
   }
 
-  .links li{
+  .links li {
     border-top: 2px solid white;
     border-bottom: 0px;
     padding: 1rem;
@@ -617,11 +632,11 @@ footer {
     transform: translateY(0);
   }
 
-  .links li:hover{
+  .links li:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
 
-  .links li:nth-child(4n){
+  .links li:nth-child(4n) {
     border-bottom: 2px solid white;
   }
 
@@ -638,12 +653,54 @@ footer {
     overflow: hidden;
   }
 
-  .socials li{
+  .socials li {
     padding: 1rem;
   }
 
-  .show-links{
+  .show-links {
     visibility: visible;
     height: auto;
+  }
+  /* section-container (section1) */
+  .container {
+    width: 100vw;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: none;
+  }
+
+  .content-text{
+    margin: 0 2rem;
+  }
+
+  .people {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    text-align: center;
+  }
+  /* section2 */
+  .maizai {
+    display: none;
+  }
+
+  .dif-video{
+    display: grid;
+  }
+
+  .dif-video iframe{
+    margin: 1rem 0;
+    width: 100vw;
+  }
+  /* section3 */
+
+  /* section4 */
+  .ticket-img{
+    margin: 0 auto;
+    margin-bottom: 2rem;
   }
 }
