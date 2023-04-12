@@ -27,7 +27,7 @@
   <body>
     <div id="app">
       <!-- preloader -->
-      <div class="preloader">
+      <!-- <div class="preloader">
         <div class="preloader-content">
           <div class="preloader-img mb-1">
             <img
@@ -48,46 +48,67 @@
             <p class="letter-10">.</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- nav -->
       <nav>
-        <div class="nav-content">
-          <a href="#home" @click.prevent="toTitle">
-            <img src="../img/logo & bg/logo.jpg" class="logo" />
-          </a>
-          <a href="#about-dacon" @click.prevent="toTitle" class="nav-text">
-            <i class="fa-solid fa-user"></i>
-            關於達康
-          </a>
-          <a href="#manzai" @click.prevent="toTitle" class="nav-text">
-            <i class="fa-solid fa-comment"></i>
-            漫才介紹
-          </a>
-          <a href="#perform" @click.prevent="toTitle" class="nav-text">
-            <i class="fa-solid fa-video"></i>
-            相關作品
-          </a>
-          <a href="#sell" @click.prevent="toTitle" class="nav-text">
-            <i class="fa-solid fa-ticket"></i>
-            售票資訊
-          </a>
-          <div class="links">
-            <a href="https://www.facebook.com/dacon.come">
-              <i class="fa-brands fa-facebook"></i>
+        <div class="nav-center">
+          <div class="nav-title">
+            <a href="#home" @click.prevent="toTitle">
+              <img src="../img/logo & bg/logo.jpg" class="logo" />
             </a>
-            <a href="https://www.instagram.com/dacon.come/">
-              <i class="fa-brands fa-instagram ml-1"></i>
-            </a>
-            <a href="https://www.youtube.com/@dacondacome">
-              <i class="fa-brands fa-youtube ml-1"></i>
-            </a>
+            <button class="nav-toggle" @click="navToggle">
+              <i class="fas fa-bars"></i>
+            </button>
           </div>
+          <ul class="links">
+            <li>
+              <a href="#about-dacon" @click.prevent="toTitle">
+                <i class="fa-solid fa-user"></i>
+                關於達康
+              </a>
+            </li>
+            <li>
+              <a href="#manzai" @click.prevent="toTitle">
+                <i class="fa-solid fa-comment"></i>
+                漫才介紹
+              </a>
+            </li>
+            <li>
+              <a href="#perform" @click.prevent="toTitle">
+                <i class="fa-solid fa-video"></i>
+                相關作品
+              </a>
+            </li>
+            <li>
+              <a href="#sell" @click.prevent="toTitle">
+                <i class="fa-solid fa-ticket"></i>
+                售票資訊
+              </a>
+            </li>
+          </ul>
+          <ul class="socials">
+            <li>
+              <a href="https://www.facebook.com/dacon.come">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/dacon.come/">
+                <i class="fa-brands fa-instagram ml-1"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@dacondacome">
+                <i class="fa-brands fa-youtube ml-1"></i>
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
       <div class="cover"></div>
-      <!-- picture -->
-      <div class="picture" id="home">
-        <div class="slide" v-for="(item,key) in pictures" :key="key">
+      <!-- slide -->
+      <div class="slide" id="home">
+        <div class="slide-img" v-for="(item,key) in slides" :key="key">
           <img :src="item.img" />
         </div>
       </div>
@@ -402,12 +423,20 @@
       const app = createApp({
         setup() {
           // preloader
-          window.addEventListener('load',function() {
+          window.addEventListener('load', function () {
             const preloader = document.querySelector('.preloader');
             preloader.classList.add('hide-preloader');
-          })
+          });
+          // nav-toggle(for 500px)
+          function navToggle () {
+            const showLinks = document.querySelector('.links');
+            const showSocials = document.querySelector('.socials');
+
+            showLinks.classList.toggle('show-links');
+            showSocials.classList.toggle('show-links');
+          }
           // 大圖
-          const pictures = ref([
+          const slides = ref([
             {
               img: '../img/slide/slide1.jpeg',
             },
@@ -424,20 +453,20 @@
               img: '../img/slide/slide5.jpeg',
             },
           ]);
-          // 大圖移動
+          // 大圖移動(slide)
           onMounted(() => {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach(function (slide, index) {
+            const slideImg = document.querySelectorAll('.slide-img');
+            slideImg.forEach(function (slide, index) {
               slide.style.left = `${index * 100}%`;
             });
             let counter = 0;
             function transform() {
               counter++;
-              const slides = document.querySelectorAll('.slide');
-              slides.forEach(function (slide) {
+              const slideImg = document.querySelectorAll('.slide-img');
+              slideImg.forEach(function (slide) {
                 slide.style.transform = `translateX(-${counter * 100}%)`;
               });
-              if (counter > pictures.value.length - 2) {
+              if (counter > slides.value.length - 2) {
                 counter = 0;
               }
             }
@@ -609,7 +638,8 @@
           });
 
           return {
-            pictures,
+            navToggle,
+            slides,
             itsOk,
             stillTalk,
             PBS,

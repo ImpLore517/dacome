@@ -321,7 +321,7 @@ nav {
   z-index: 30;
 }
 
-.nav-content {
+.nav-center {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -331,7 +331,17 @@ nav {
   width: 80px;
 }
 
-.nav-text {
+.nav-toggle{
+  display: none;
+}
+
+.links{
+  display: flex;
+  justify-content: space-between;
+}
+
+.links li a{
+  padding: 0 5rem;
   color: rgba(128, 128, 128, 0.5);
   text-decoration: none;
   font-size: 24px;
@@ -341,15 +351,15 @@ nav {
   font-weight: bold;
 }
 
-.nav-text:hover {
+.links li a:hover {
   color: white;
 }
 
-.nav-text:active {
+.links li:active {
   transform: translateY(8px);
 }
 
-a i {
+li i {
   font-size: 20px;
 }
 
@@ -357,24 +367,28 @@ a i {
   height: 80px;
 }
 
-.links i {
+.socials{
+  display: flex;
+}
+
+.socials i {
   color: rgba(128, 128, 128, 0.5);
   transition: all 0.3s linear;
   font-size: 24px;
 }
 
-.links i:hover {
+.socials i:hover {
   color: white;
 }
 /* picture */
-.picture {
+.slide {
   width: 100%;
   height: 95vh;
   position: relative;
   overflow: hidden;
 }
 
-.slide {
+.slide-img {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -383,7 +397,7 @@ a i {
   transition: all 0.5s linear;
 }
 
-.slide img {
+.slide-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -414,6 +428,7 @@ a i {
 
 .content-text {
   margin: 0 3rem;
+  overflow: hidden;
 }
 /* section2 */
 .container:nth-child(odd) {
@@ -563,35 +578,72 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
-  .nav-content {
+  /* nav */
+  .nav-center {
     display: flex;
     flex-direction: column;
   }
 
-  .nav-text{
+  .nav-title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-toggle{
+    display: block;
+    background-color: transparent;
+    color: white;
+    font-size: 36px;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  .links{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: start;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .links li{
     border-top: 2px solid white;
     border-bottom: 0px;
-    width: 100%;
     padding: 1rem;
     transition: all 0.3s linear;
-  }
-
-  .nav-text:hover{
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .nav-text:active{
     transform: translateY(0);
   }
 
-  .nav-text:nth-child(5n){
+  .links li:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .links li:nth-child(4n){
     border-bottom: 2px solid white;
   }
 
-  .links {
-    padding: 1rem;
-    display: flex;
+  .links li a {
+    padding: 0;
+  }
+
+  .socials {
+    padding: 0 1rem;
     width: 100%;
     justify-content: space-around;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .socials li{
+    padding: 1rem;
+  }
+
+  .show-links{
+    visibility: visible;
+    height: auto;
   }
 }
