@@ -431,7 +431,7 @@ li i {
 }
 
 .title {
-  margin: 0 3rem;
+  margin: 1rem 3rem;
 }
 
 .dif-video {
@@ -591,7 +591,7 @@ footer {
   font-size: 18px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 720px) {
   /* nav */
   .nav-center {
     display: flex;
@@ -694,7 +694,7 @@ footer {
 
   .dif-video iframe{
     margin: 1rem 0;
-    width: 100vw;
+    width: 80vw;
   }
   /* section3 */
 

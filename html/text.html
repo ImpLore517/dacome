@@ -189,28 +189,28 @@
               </li>
             </ul>
           </div>
-          <img src="../img/manzai.jpg" class="maizai" alt="maizai"/>
+          <img src="../img/manzai.jpg" class="maizai" alt="maizai" />
         </div>
-          <h2 class="title">漫才、相聲的不同之處</h2>
-          <div class="dif-video">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/wwqxR3Zi1xo"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/gdkLmkNkY8E"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+        <h2 class="title">漫才、相聲的不同之處</h2>
+        <div class="dif-video">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/wwqxR3Zi1xo"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/gdkLmkNkY8E"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </section>
       <!-- section3 -->
@@ -347,7 +347,11 @@
         <div class="content">
           <img src="../img/ticket/s7e2.png" class="ticket-img" />
           <div class="content-text">
-            <h2 class="mb-1 circle-font">《好了啦！達康！》第七季第二集</h2>
+            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">《好了啦！達康！》第七季第二集</h2>
+            <div v-else>
+              <h2 class="mb-1 circle-font">《好了啦！達康！》</h2>
+              <h2 class="mb-1 circle-font">第七季第二集</h2>
+            </div>
             <h2 class="mb-1 circle-font">D.C. Night Live</h2>
             <p>類別：戲劇</p>
             <p>分級：建議年齡 12歲以上</p>
@@ -366,7 +370,11 @@
         <div class="content">
           <img src="../img/ticket/Yuntech.jpeg" class="ticket-img" />
           <div class="content-text">
-            <h2 class="mb-1 circle-font">達康.COME笑現場IN雲泰表演廳</h2>
+            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">達康.COME笑現場IN雲泰表演廳</h2>
+            <div v-else>
+              <h2 class="mb-1 circle-font">達康.COME笑現場</h2>
+              <h2 class="mb-1 circle-font">IN雲泰表演廳</h2>
+            </div>
             <h2 class="mb-1 circle-font">
               Dacon.come laughing live show in Yuntay Performance Hall
             </h2>
@@ -385,7 +393,11 @@
         <div class="content">
           <img src="../img/ticket/guest.png" class="ticket-img" />
           <div class="content-text">
-            <h2 class="mb-1 circle-font">傻孩子宅急便《這個殺手不太妙plus》</h2>
+            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">傻孩子宅急便《這個殺手不太妙plus》</h2>
+            <div v-else>
+              <h2 class="mb-1 circle-font">傻孩子宅急便</h2>
+              <h2 class="mb-1 circle-font">《這個殺手不太妙plus》</h2>
+            </div>
             <h2 class="mb-1 circle-font">
               Ahogakitakkyubin" Dumb Dumb Hit Man plus "
             </h2>
@@ -640,6 +652,24 @@
               document.querySelector('.top-arr').classList.remove('show-arr');
             }
           });
+          // resize
+          const resize = ref('');
+          window.addEventListener('resize', function () {
+            if (window.innerWidth <= 720) {
+              resize.value = "mobile";
+            } else {
+              resize.value = "pc";
+            }
+          });
+
+          function sizeAdjust () {
+            if (window.innerWidth <= 720) {
+              resize.value = "mobile";
+            } else {
+              resize.value = "pc";
+            }
+          }
+          sizeAdjust();
 
           return {
             navToggle,
@@ -652,6 +682,8 @@
             moveLeft,
             moveRight,
             choose,
+            resize,
+            sizeAdjust
           };
         },
       });
