@@ -376,7 +376,7 @@ li i {
 .socials i:hover {
   color: white;
 }
-/* picture */
+/* slide */
 .slide {
   width: 100%;
   height: 95vh;
@@ -660,6 +660,10 @@ footer {
   .show-links {
     visibility: visible;
     height: auto;
+  }
+  /* slide */
+  .slide{
+    height: 30vh;
   }
   /* section-container (section1) */
   .container {

@@ -457,7 +457,7 @@
             showLinks.classList.toggle('show-links');
             showSocials.classList.toggle('show-links');
           }
-          // 大圖
+          // 大圖(pc)
           const slides = ref([
             {
               img: '../img/slide/slide1.jpeg',
@@ -475,7 +475,7 @@
               img: '../img/slide/slide5.jpeg',
             },
           ]);
-          // 大圖移動(slide)
+          // slide
           onMounted(() => {
             const slideImg = document.querySelectorAll('.slide-img');
             slideImg.forEach(function (slide, index) {
@@ -483,14 +483,15 @@
             });
             let counter = 0;
             function transform() {
-              counter++;
+              if (counter < slides.value.length - 1) {
+                counter++;
+              } else {
+                counter = 0;
+              }
               const slideImg = document.querySelectorAll('.slide-img');
               slideImg.forEach(function (slide) {
                 slide.style.transform = `translateX(-${counter * 100}%)`;
               });
-              if (counter > slides.value.length - 2) {
-                counter = 0;
-              }
             }
             setInterval(transform, 6000);
           });
@@ -702,14 +703,6 @@
           });
           // resize
           const resize = ref('');
-          window.addEventListener('resize', function () {
-            if (window.innerWidth <= 720) {
-              resize.value = 'mobile';
-            } else {
-              resize.value = 'pc';
-            }
-          });
-
           function sizeAdjust() {
             if (window.innerWidth <= 720) {
               resize.value = 'mobile';
@@ -718,6 +711,9 @@
             }
           }
           sizeAdjust();
+          window.addEventListener('resize', function () {
+            sizeAdjust();
+          });
 
           return {
             navToggle,
