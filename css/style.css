@@ -697,7 +697,34 @@ footer {
     width: 80vw;
   }
   /* section3 */
+  .video{
+    height: 828px;
+  }
 
+  .content-video{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .itsOkVideo iframe,
+  .stillTalkVideo iframe,
+  .PBSVideo iframe{
+    width:calc(100vw - 59px);
+    margin: 0 29.5px;
+  }
+
+  .itsOkVideo:nth-child(odd),
+  .stillTalkVideo:nth-child(odd),
+  .PBSVideo:nth-child(odd){
+    margin-left: 0;
+  }
+  
+  .itsOkVideo:nth-child(even),
+  .stillTalkVideo:nth-child(even),
+  .PBSVideo:nth-child(even){
+    margin: 0;
+  }
+  
   /* section4 */
   .ticket-img{
     margin: 0 auto;

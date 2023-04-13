@@ -27,7 +27,7 @@
   <body>
     <div id="app">
       <!-- preloader -->
-      <!-- <div class="preloader">
+      <div class="preloader">
         <div class="preloader-content">
           <div class="preloader-img mb-1">
             <img
@@ -48,7 +48,7 @@
             <p class="letter-10">.</p>
           </div>
         </div>
-      </div> -->
+      </div>
       <!-- nav -->
       <nav>
         <div class="nav-center">
@@ -347,7 +347,9 @@
         <div class="content">
           <img src="../img/ticket/s7e2.png" class="ticket-img" />
           <div class="content-text">
-            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">《好了啦！達康！》第七季第二集</h2>
+            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">
+              《好了啦！達康！》第七季第二集
+            </h2>
             <div v-else>
               <h2 class="mb-1 circle-font">《好了啦！達康！》</h2>
               <h2 class="mb-1 circle-font">第七季第二集</h2>
@@ -370,7 +372,9 @@
         <div class="content">
           <img src="../img/ticket/Yuntech.jpeg" class="ticket-img" />
           <div class="content-text">
-            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">達康.COME笑現場IN雲泰表演廳</h2>
+            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">
+              達康.COME笑現場IN雲泰表演廳
+            </h2>
             <div v-else>
               <h2 class="mb-1 circle-font">達康.COME笑現場</h2>
               <h2 class="mb-1 circle-font">IN雲泰表演廳</h2>
@@ -393,7 +397,9 @@
         <div class="content">
           <img src="../img/ticket/guest.png" class="ticket-img" />
           <div class="content-text">
-            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">傻孩子宅急便《這個殺手不太妙plus》</h2>
+            <h2 class="mb-1 circle-font" v-if="resize === 'pc'">
+              傻孩子宅急便《這個殺手不太妙plus》
+            </h2>
             <div v-else>
               <h2 class="mb-1 circle-font">傻孩子宅急便</h2>
               <h2 class="mb-1 circle-font">《這個殺手不太妙plus》</h2>
@@ -571,7 +577,7 @@
               });
 
               // 影片下方頁面選擇點
-              const length = Math.ceil(video.length / 2);
+              const length = Math.ceil(video.length / 2); //回傳>=所給數字的最小整數
               const arr = new Array(length).fill('');
               const arr1 = arr
                 .map(function (text, index) {
@@ -589,18 +595,30 @@
             setVideo(PBSVideos, PBSPage);
           });
           let counter = 0;
+          //右移
           function moveRight(video, page) {
             const element = document.querySelectorAll(video);
-            const x =
-              element[2].getBoundingClientRect().x -
-              element[0].getBoundingClientRect().x;
-            if (counter < Math.floor((element.length - 1) / 2)) {
-              counter++;
+            if (window.innerWidth <= 720) {
+              const x =
+                element[1].getBoundingClientRect().x -
+                element[0].getBoundingClientRect().x;
+              if (counter < Math.floor((element.length - 1) / 2)) {
+                counter++;
+              }
+              element.forEach((video) => {
+                video.style.transform = `translateX(-${counter * x}px)`;
+              });
+            } else {
+              const x =
+                element[2].getBoundingClientRect().x -
+                element[0].getBoundingClientRect().x;
+              if (counter < Math.floor((element.length - 1) / 2)) {
+                counter++;
+              }
+              element.forEach((video) => {
+                video.style.transform = `translateX(-${counter * x}px)`;
+              });
             }
-            element.forEach((video, index) => {
-              video.style.transform = `translateX(-${counter * x}px)`;
-            });
-
             const circle = document.querySelector(page).childNodes;
             circle.forEach(function (circle) {
               circle.classList.remove('bg-black');
@@ -608,19 +626,34 @@
 
             circle[counter].classList.add('bg-black');
           }
+          //左移
           function moveLeft(video, page) {
             const element = document.querySelectorAll(video);
-            const x =
-              element[2].getBoundingClientRect().x -
-              element[0].getBoundingClientRect().x;
-            if (counter > 0) {
-              counter--;
+            if (window.innerWidth <= 720) {
+              const x =
+                element[1].getBoundingClientRect().x -
+                element[0].getBoundingClientRect().x;
+              if (counter > 0) {
+                counter--;
+              } else {
+                counter = 0;
+              }
+              element.forEach((video) => {
+                video.style.transform = `translateX(-${counter * x}px)`;
+              });
             } else {
-              counter = 0;
+              const x =
+                element[2].getBoundingClientRect().x -
+                element[0].getBoundingClientRect().x;
+              if (counter > 0) {
+                counter--;
+              } else {
+                counter = 0;
+              }
+              element.forEach((video) => {
+                video.style.transform = `translateX(-${counter * x}px)`;
+              });
             }
-            element.forEach((video, index) => {
-              video.style.transform = `translateX(-${counter * x}px)`;
-            });
 
             const circle = document.querySelector(page).childNodes;
             circle.forEach(function (circle) {
@@ -633,9 +666,24 @@
           function choose(e) {
             const data = e.path[0].dataset.id;
             const videos = [...e.path[2].childNodes[1].childNodes].slice(1, -1);
-            videos.forEach((video) => {
-              video.style.transform = `translateX(-${data * 1567}px)`;
-            });
+            if (innerWidth <= 720) {
+              const x =
+                videos[1].getBoundingClientRect().x -
+                videos[0].getBoundingClientRect().x;
+
+              videos.forEach((video) => {
+                video.style.transform = `translateX(-${data * x}px)`;
+              });
+            } else {
+              const x =
+                videos[2].getBoundingClientRect().x -
+                videos[0].getBoundingClientRect().x;
+
+              videos.forEach((video) => {
+                video.style.transform = `translateX(-${data * x}px)`;
+              });
+            }
+
             const circles = e.path[1].childNodes;
             circles.forEach((circle) => {
               circle.classList.remove('bg-black');
@@ -656,17 +704,17 @@
           const resize = ref('');
           window.addEventListener('resize', function () {
             if (window.innerWidth <= 720) {
-              resize.value = "mobile";
+              resize.value = 'mobile';
             } else {
-              resize.value = "pc";
+              resize.value = 'pc';
             }
           });
 
-          function sizeAdjust () {
+          function sizeAdjust() {
             if (window.innerWidth <= 720) {
-              resize.value = "mobile";
+              resize.value = 'mobile';
             } else {
-              resize.value = "pc";
+              resize.value = 'pc';
             }
           }
           sizeAdjust();
@@ -683,7 +731,7 @@
             moveRight,
             choose,
             resize,
-            sizeAdjust
+            sizeAdjust,
           };
         },
       });
