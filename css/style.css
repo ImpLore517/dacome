@@ -130,7 +130,7 @@ html {
 }
 
 body {
-  background: url(./bg.PNG);
+  background: url(../img/logoBg/bg.PNG);
 }
 
 .circle-font {
@@ -400,7 +400,7 @@ li i {
 }
 /* section-container (section1) */
 .container {
-  width: 85vw;
+  width: 90vw;
   margin: 4rem auto;
   background: white;
 }
@@ -418,15 +418,17 @@ li i {
   margin-top: 2rem;
 }
 
-.people {
+.person {
   border: 3px solid black;
+  width: 290px;
+  height: 290px;
 }
 
 .content-text {
   margin: 0 3rem;
 }
 /* section2 */
-.container:nth-child(odd) {
+.container:nth-child(even) {
   color: rgb(26, 33, 62);
 }
 
@@ -442,6 +444,8 @@ li i {
 /* section3 */
 .video {
   display: flex;
+  width: calc(124px + 60vw);
+  margin: 0 auto;
   justify-content: space-between;
   border: 3px solid rgba(0, 0, 0, 0.7);
   box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.7);
@@ -465,18 +469,13 @@ li i {
 .PBSVideo {
   transition: all 0.3s linear;
   padding: 3rem 0;
+  margin: 0 29.5px;
 }
 
-.itsOkVideo:nth-child(odd),
-.stillTalkVideo:nth-child(odd),
-.PBSVideo:nth-child(odd){
-  margin-left: 10.1%;
-}
-
-.itsOkVideo:nth-child(even),
-.stillTalkVideo:nth-child(even),
-.PBSVideo:nth-child(even){
-  margin: 0 10.5%;
+.itsOkVideo iframe,
+.stillTalkVideo iframe,
+.PBSVideo iframe {
+  width: 30vw;
 }
 
 .side-arrow {
@@ -583,7 +582,7 @@ li i {
 }
 /* footer */
 footer {
-  background: url('../img/logo & bg/footer-bg.png');
+  background: url('../img/logoBg/footer-bg.png');
   color: white;
   display: grid;
   place-items: center;
@@ -662,12 +661,13 @@ footer {
     height: auto;
   }
   /* slide */
-  .slide{
+  .slide {
     height: 30vh;
   }
   /* section-container (section1) */
   .container {
     width: 100vw;
+    margin: 2rem auto;
   }
 
   .content {
@@ -675,11 +675,11 @@ footer {
     grid-template-columns: none;
   }
 
-  .content-text{
-    margin: 0 2rem;
+  .content-text {
+    margin: 0 1.5rem;
   }
 
-  .people {
+  .person {
     margin: 0 auto;
     margin-bottom: 1rem;
   }
@@ -692,46 +692,60 @@ footer {
     display: none;
   }
 
-  .dif-video{
+  .dif-video {
     display: grid;
   }
 
-  .dif-video iframe{
+  .dif-video iframe {
     margin: 1rem 0;
-    width: 80vw;
+    width: 100vw;
+  }
+
+  .title {
+    margin: 1rem 0;
   }
   /* section3 */
-  .video{
+  .video {
+    width: 100vw;
     height: 828px;
   }
 
-  .content-video{
+  .content-video {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 
   .itsOkVideo iframe,
   .stillTalkVideo iframe,
-  .PBSVideo iframe{
-    width:calc(100vw - 59px);
-    margin: 0 29.5px;
+  .PBSVideo iframe {
+    width: 100vw;
   }
 
   .itsOkVideo:nth-child(odd),
   .stillTalkVideo:nth-child(odd),
-  .PBSVideo:nth-child(odd){
+  .PBSVideo:nth-child(odd) {
     margin-left: 0;
   }
-  
+
   .itsOkVideo:nth-child(even),
   .stillTalkVideo:nth-child(even),
-  .PBSVideo:nth-child(even){
+  .PBSVideo:nth-child(even) {
     margin: 0;
   }
-  
+
   /* section4 */
-  .ticket-img{
+  .ticket-img {
     margin: 0 auto;
     margin-bottom: 2rem;
+  }
+
+  /* back-to-top-arr */
+  .top-arr {
+    right: 1rem;
+    bottom: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    border: 2px solid black;
   }
 }
