@@ -115,7 +115,7 @@
       <!-- section1 -->
       <section class="container" id="about-dacon">
         <h1 class="mb-1">關於達康</h1>
-        <div class="title">
+        <div class="content-text">
           <p>
             達康.come是由陳彥達（阿達）和何瑞康（康康）組成的台灣漫才搭檔組合，於2013年創立笑太夫漫才集團，由阿達（陳彥達）擔任團長，康康（何瑞康）擔任劇團總監，以推廣漫才創作、演出作為劇團的重點核心，並嘗試運用各種戲劇特性，結合漫才精神，發展各類型喜劇表現樣貌，未來更朝漫才發展之情境喜劇結合各種媒體運用為目標，期待讓表演更豐富，為觀眾帶來更多歡笑。
           </p>
@@ -193,24 +193,26 @@
         </div>
         <h2 class="title">漫才、相聲的不同之處</h2>
         <div class="dif-video">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/wwqxR3Zi1xo"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/gdkLmkNkY8E"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          <div class="videobox">
+            <iframe
+              src="https://www.youtube.com/embed/wwqxR3Zi1xo"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="videobox">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/gdkLmkNkY8E"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </section>
       <!-- section3 -->
@@ -443,7 +445,7 @@
             const preloader = document.querySelector('.preloader');
             preloader.classList.add('hide-preloader');
           });
-          // nav-toggle(for 500px)
+          // nav-toggle(for 800px)
           function navToggle() {
             const showLinks = document.querySelector('.links');
             const showSocials = document.querySelector('.socials');
@@ -557,7 +559,20 @@
               video: 'https://www.youtube.com/embed/agRqpQmNLHE',
             },
           ]);
+          // resize
+          const resize = ref('');
+
+          function sizeAdjust() {
+            if (window.innerWidth <= 800) {
+              resize.value = 'mobile';
+            } else {
+              resize.value = 'pc';
+            }
+          }
+          sizeAdjust();
           // 影片左右移、影片頁面選擇點
+          let counter = 0;
+
           onMounted(() => {
             const itsOkVideos = document.querySelectorAll('.itsOkVideo');
             const itsOkPage = document.querySelector('.itsOkPage');
@@ -566,13 +581,10 @@
             const stillTalkPage = document.querySelector('.stillTalkPage');
             const PBSVideos = document.querySelectorAll('.PBSVideo');
             const PBSPage = document.querySelector('.PBSPage');
-            function setVideo(video, page) {
-              video.forEach(function (e, index) {
-                e.style.left = `${index * 50}%`;
-              });
 
+            function setVideo(video, page) {
               // 影片下方頁面選擇點
-              const length = Math.ceil(video.length / 2); //回傳>=所給數字的最小整數
+              var length = Math.ceil(video.length); // 回傳>=所給數字的最小整數
               const arr = new Array(length).fill('');
               const arr1 = arr
                 .map(function (text, index) {
@@ -582,38 +594,38 @@
               page.innerHTML = arr1;
 
               const circle = page.childNodes;
-              circle[0].classList.add('bg-black');
+              circle[counter].classList.add('bg-black');
             }
 
             setVideo(itsOkVideos, itsOkPage);
             setVideo(stillTalkVideos, stillTalkPage);
             setVideo(PBSVideos, PBSPage);
+
+            window.addEventListener('resize', function () {
+              sizeAdjust();
+              directionX(itsOkVideos, counter);
+
+            });
           });
-          let counter = 0;
-          //右移
+
+          // 計算移動距離
+          function directionX(element, num) {
+            const x =
+              element[2].getBoundingClientRect().x -
+              element[1].getBoundingClientRect().x;
+            element.forEach((video) => {
+              video.style.transform = `translateX(-${num * x}px)`;
+            });
+          }
+          // 右移
           function moveRight(video, page) {
             const element = document.querySelectorAll(video);
-            if (window.innerWidth <= 720) {
-              const x =
-                element[1].getBoundingClientRect().x -
-                element[0].getBoundingClientRect().x;
-              if (counter < Math.floor((element.length - 1) / 2)) {
-                counter++;
-              }
-              element.forEach((video) => {
-                video.style.transform = `translateX(-${counter * x}px)`;
-              });
-            } else {
-              const x =
-                element[2].getBoundingClientRect().x -
-                element[0].getBoundingClientRect().x;
-              if (counter < Math.floor((element.length - 1) / 2)) {
-                counter++;
-              }
-              element.forEach((video) => {
-                video.style.transform = `translateX(-${counter * x}px)`;
-              });
+            if (counter < Math.floor(element.length - 1)) {
+              counter++;
             }
+
+            directionX(element, counter);
+
             const circle = document.querySelector(page).childNodes;
             circle.forEach(function (circle) {
               circle.classList.remove('bg-black');
@@ -621,34 +633,16 @@
 
             circle[counter].classList.add('bg-black');
           }
-          //左移
+          // 左移
           function moveLeft(video, page) {
             const element = document.querySelectorAll(video);
-            if (window.innerWidth <= 720) {
-              const x =
-                element[1].getBoundingClientRect().x -
-                element[0].getBoundingClientRect().x;
-              if (counter > 0) {
-                counter--;
-              } else {
-                counter = 0;
-              }
-              element.forEach((video) => {
-                video.style.transform = `translateX(-${counter * x}px)`;
-              });
+            if (counter > 0) {
+              counter--;
             } else {
-              const x =
-                element[2].getBoundingClientRect().x -
-                element[0].getBoundingClientRect().x;
-              if (counter > 0) {
-                counter--;
-              } else {
-                counter = 0;
-              }
-              element.forEach((video) => {
-                video.style.transform = `translateX(-${counter * x}px)`;
-              });
+              counter = 0;
             }
+
+            directionX(element, counter);
 
             const circle = document.querySelector(page).childNodes;
             circle.forEach(function (circle) {
@@ -661,23 +655,8 @@
           function choose(e) {
             const data = e.path[0].dataset.id;
             const videos = [...e.path[2].childNodes[1].childNodes].slice(1, -1);
-            if (innerWidth <= 720) {
-              const x =
-                videos[1].getBoundingClientRect().x -
-                videos[0].getBoundingClientRect().x;
 
-              videos.forEach((video) => {
-                video.style.transform = `translateX(-${data * x}px)`;
-              });
-            } else {
-              const x =
-                videos[2].getBoundingClientRect().x -
-                videos[0].getBoundingClientRect().x;
-
-              videos.forEach((video) => {
-                video.style.transform = `translateX(-${data * x}px)`;
-              });
-            }
+            directionX(videos, data);
 
             const circles = e.path[1].childNodes;
             circles.forEach((circle) => {
@@ -695,19 +674,6 @@
               document.querySelector('.top-arr').classList.remove('show-arr');
             }
           });
-          // resize
-          const resize = ref('');
-          function sizeAdjust() {
-            if (window.innerWidth <= 720) {
-              resize.value = 'mobile';
-            } else {
-              resize.value = 'pc';
-            }
-          }
-          sizeAdjust();
-          window.addEventListener('resize', function () {
-            sizeAdjust();
-          });
 
           return {
             navToggle,
@@ -716,6 +682,7 @@
             stillTalk,
             PBS,
             counter,
+            directionX,
             toTitle,
             moveLeft,
             moveRight,

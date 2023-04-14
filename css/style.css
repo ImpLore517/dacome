@@ -336,8 +336,11 @@ nav {
   justify-content: space-between;
 }
 
-.links li a {
+.links li {
   padding: 0 5rem;
+}
+
+.links li a {
   color: rgba(128, 128, 128, 0.5);
   text-decoration: none;
   font-size: 24px;
@@ -439,13 +442,27 @@ li i {
 .dif-video {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  margin: 1rem;
+}
+
+.videobox {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 30%;
+}
+
+.dif-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 /* section3 */
 .video {
   display: flex;
-  width: calc(124px + 60vw);
-  margin: 0 auto;
+  width: 90vw;
   justify-content: space-between;
   border: 3px solid rgba(0, 0, 0, 0.7);
   box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.7);
@@ -458,9 +475,8 @@ li i {
 .content-video {
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
   height: 100%;
-  position: absolute;
   overflow: hidden;
 }
 
@@ -469,13 +485,18 @@ li i {
 .PBSVideo {
   transition: all 0.3s linear;
   padding: 3rem 0;
-  margin: 0 29.5px;
+}
+
+.itsOkVideo:first-child iframe,
+.stillTalkVideo:first-child iframe,
+.PBSVideo:first-child iframe {
+  margin-left: calc(((90vw - 1120px) / 4) - 29.5px);
 }
 
 .itsOkVideo iframe,
 .stillTalkVideo iframe,
 .PBSVideo iframe {
-  width: 30vw;
+  margin: 0 calc((90vw - 1120px) / 4);
 }
 
 .side-arrow {
@@ -590,7 +611,7 @@ footer {
   font-size: 18px;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 800px) {
   /* nav */
   .nav-center {
     display: flex;
@@ -640,7 +661,7 @@ footer {
   }
 
   .links li a {
-    padding: 0;
+    display: block;
   }
 
   .socials {
@@ -692,13 +713,13 @@ footer {
     display: none;
   }
 
-  .dif-video {
-    display: grid;
+  .videobox {
+    padding-bottom: 56.25%;
   }
 
-  .dif-video iframe {
-    margin: 1rem 0;
-    width: 100vw;
+  .dif-video {
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
   .title {
@@ -707,32 +728,21 @@ footer {
   /* section3 */
   .video {
     width: 100vw;
-    height: 828px;
-  }
-
-  .content-video {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
   }
 
   .itsOkVideo iframe,
   .stillTalkVideo iframe,
   .PBSVideo iframe {
     width: 100vw;
-  }
-
-  .itsOkVideo:nth-child(odd),
-  .stillTalkVideo:nth-child(odd),
-  .PBSVideo:nth-child(odd) {
-    margin-left: 0;
-  }
-
-  .itsOkVideo:nth-child(even),
-  .stillTalkVideo:nth-child(even),
-  .PBSVideo:nth-child(even) {
+    border: 3px solid black;
     margin: 0;
   }
 
+  .itsOkVideo:first-child iframe,
+  .stillTalkVideo:first-child iframe,
+  .PBSVideo:first-child iframe {
+    margin-left: 0;
+  }
   /* section4 */
   .ticket-img {
     margin: 0 auto;
@@ -747,5 +757,41 @@ footer {
     height: 1.5rem;
     font-size: 1rem;
     border: 2px solid black;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 800px) {
+  .links li {
+    padding: 0 1rem;
+  }
+
+  .itsOkVideo:first-child iframe,
+  .stillTalkVideo:first-child iframe,
+  .PBSVideo:first-child iframe {
+    margin-left: calc(((90vw - 560px) / 2) - 29.5px);
+  }
+
+  .itsOkVideo iframe,
+  .stillTalkVideo iframe,
+  .PBSVideo iframe {
+    margin: 0 calc((90vw - 560px) / 2);
+  }
+}
+
+@media screen and (max-width: 1325px) and (min-width: 1024px) {
+  .links li {
+    padding: 0 2rem;
+  }
+
+  .itsOkVideo:first-child iframe,
+  .stillTalkVideo:first-child iframe,
+  .PBSVideo:first-child iframe {
+    margin-left: calc(((90vw - 560px) / 2) - 29.5px);
+  }
+
+  .itsOkVideo iframe,
+  .stillTalkVideo iframe,
+  .PBSVideo iframe {
+    margin: 0 calc((90vw - 560px) / 2);
   }
 }
