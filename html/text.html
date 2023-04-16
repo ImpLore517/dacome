@@ -27,7 +27,7 @@
   <body>
     <div id="app">
       <!-- preloader -->
-      <div class="preloader">
+      <!-- <div class="preloader">
         <div class="preloader-content">
           <div class="preloader-img mb-1">
             <img
@@ -48,7 +48,7 @@
             <p class="letter-10">.</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- nav -->
       <nav>
         <div class="nav-center">
@@ -231,7 +231,7 @@
           <button
             type="submit"
             class="side-arrow"
-            @click="moveLeft('.itsOkVideo','.itsOkPage')"
+            @click="moveLeftA('.itsOkVideo','.itsOkPage')"
           >
             <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -251,11 +251,11 @@
           <button
             type="submit"
             class="side-arrow"
-            @click="moveRight('.itsOkVideo','.itsOkPage')"
+            @click="moveRightA('.itsOkVideo','.itsOkPage')"
           >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
-          <div class="selector itsOkPage" @click="choose"></div>
+          <div class="selector itsOkPage"></div>
         </div>
         <!-- 還在講 -->
         <h2 class="mb-1 mt-1">達康還在講</h2>
@@ -268,7 +268,7 @@
           <button
             type="submit"
             class="side-arrow"
-            @click="moveLeft('.stillTalkVideo','.stillTalkPage')"
+            @click="moveLeftB('.stillTalkVideo','.stillTalkPage')"
           >
             <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -292,11 +292,11 @@
           <button
             type="submit"
             class="side-arrow"
-            @click="moveRight('.stillTalkVideo','.stillTalkPage')"
+            @click="moveRightB('.stillTalkVideo','.stillTalkPage')"
           >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
-          <div class="selector stillTalkPage" @click="choose"></div>
+          <div class="selector stillTalkPage"></div>
         </div>
         <!-- 集合囉！Play Boy Station！ -->
         <h2 class="mb-1 mt-1">集合囉！Play Boy Station！</h2>
@@ -316,7 +316,7 @@
           <button
             type="submit"
             class="side-arrow"
-            @click="moveLeft('.PBSVideo','.PBSPage')"
+            @click="moveLeftC('.PBSVideo','.PBSPage')"
           >
             <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -336,11 +336,11 @@
           <button
             type="submit"
             class="side-arrow"
-            @click="moveRight('.PBSVideo','.PBSPage')"
+            @click="moveRightC('.PBSVideo','.PBSPage')"
           >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
-          <div class="selector PBSPage" @click="choose"></div>
+          <div class="selector PBSPage"></div>
         </div>
       </section>
       <!-- section4 -->
@@ -571,43 +571,117 @@
           }
           sizeAdjust();
           // 影片左右移、影片頁面選擇點
-          let counter = 0;
+          let counterA = 0;
+          let counterB = 0;
+          let counterC = 0;
 
           onMounted(() => {
+            // itsOK
             const itsOkVideos = document.querySelectorAll('.itsOkVideo');
             const itsOkPage = document.querySelector('.itsOkPage');
-            const stillTalkVideos =
-              document.querySelectorAll('.stillTalkVideo');
-            const stillTalkPage = document.querySelector('.stillTalkPage');
-            const PBSVideos = document.querySelectorAll('.PBSVideo');
-            const PBSPage = document.querySelector('.PBSPage');
-
-            function setVideo(video, page) {
-              // 影片下方頁面選擇點
-              var length = Math.ceil(video.length); // 回傳>=所給數字的最小整數
+            // 影片下方頁面選擇點
+            function setVideoA() {
+              const length = Math.ceil(itsOkVideos.length); // 回傳>=所給數字的最小整數
               const arr = new Array(length).fill('');
               const arr1 = arr
                 .map(function (text, index) {
                   return `<button type="button" class="circle-btn" data-id="${index}">${text}</button>`;
                 })
                 .join('');
-              page.innerHTML = arr1;
+              itsOkPage.innerHTML = arr1;
 
-              const circle = page.childNodes;
-              circle[counter].classList.add('bg-black');
+              const circle = itsOkPage.childNodes;
+              circle.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                  const circles = e.currentTarget.parentElement.childNodes;
+                  circles.forEach((circle) => {
+                    circle.classList.remove('bg-black');
+                  });
+                  const index = e.currentTarget.dataset.id;
+
+                  directionX(itsOkVideos, index);
+
+                  counterA = index;
+                  e.currentTarget.classList.add('bg-black');
+                });
+              });
+              circle[counterA].classList.add('bg-black');
+            }
+            // stillTalk
+            const stillTalkVideos =
+              document.querySelectorAll('.stillTalkVideo');
+            const stillTalkPage = document.querySelector('.stillTalkPage');
+            // 影片下方頁面選擇點
+            function setVideoB() {
+              const length = Math.ceil(stillTalkVideos.length); // 回傳>=所給數字的最小整數
+              const arr = new Array(length).fill('');
+              const arr1 = arr
+                .map(function (text, index) {
+                  return `<button type="button" class="circle-btn" data-id="${index}">${text}</button>`;
+                })
+                .join('');
+              stillTalkPage.innerHTML = arr1;
+
+              const circle = stillTalkPage.childNodes;
+              circle.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                  const circles = e.currentTarget.parentElement.childNodes;
+                  circles.forEach((circle) => {
+                    circle.classList.remove('bg-black');
+                  });
+                  const index = e.currentTarget.dataset.id;
+
+                  directionX(stillTalkVideos, index);
+
+                  counterB = index;
+                  e.currentTarget.classList.add('bg-black');
+                });
+              });
+              circle[counterB].classList.add('bg-black');
+            }
+            // PBS
+            const PBSVideos = document.querySelectorAll('.PBSVideo');
+            const PBSPage = document.querySelector('.PBSPage');
+            // 影片下方頁面選擇點
+            function setVideoC() {
+              const length = Math.ceil(PBSVideos.length); // 回傳>=所給數字的最小整數
+              const arr = new Array(length).fill('');
+              const arr1 = arr
+                .map(function (text, index) {
+                  return `<button type="button" class="circle-btn" data-id="${index}">${text}</button>`;
+                })
+                .join('');
+              PBSPage.innerHTML = arr1;
+
+              const circle = PBSPage.childNodes;
+              circle.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                  const circles = e.currentTarget.parentElement.childNodes;
+                  circles.forEach((circle) => {
+                    circle.classList.remove('bg-black');
+                  });
+                  const index = e.currentTarget.dataset.id;
+
+                  directionX(PBSVideos, index);
+
+                  counterC = index;
+                  e.currentTarget.classList.add('bg-black');
+                });
+              });
+              circle[counterC].classList.add('bg-black');
             }
 
-            setVideo(itsOkVideos, itsOkPage);
-            setVideo(stillTalkVideos, stillTalkPage);
-            setVideo(PBSVideos, PBSPage);
+            setVideoA();
+            setVideoB();
+            setVideoC();
 
             window.addEventListener('resize', function () {
               sizeAdjust();
-              directionX(itsOkVideos, counter);
-
+              directionX(itsOkVideos, counterA);
+              directionX(stillTalkVideos, counterB);
+              directionX(PBSVideos, counterC);
             });
           });
-
           // 計算移動距離
           function directionX(element, num) {
             const x =
@@ -617,53 +691,107 @@
               video.style.transform = `translateX(-${num * x}px)`;
             });
           }
-          // 右移
-          function moveRight(video, page) {
+          // 右移 A
+          function moveRightA(video, page) {
             const element = document.querySelectorAll(video);
-            if (counter < Math.floor(element.length - 1)) {
-              counter++;
+            if (counterA < Math.floor(element.length - 1)) {
+              counterA++;
             }
 
-            directionX(element, counter);
+            directionX(element, counterA);
 
             const circle = document.querySelector(page).childNodes;
             circle.forEach(function (circle) {
               circle.classList.remove('bg-black');
             });
 
-            circle[counter].classList.add('bg-black');
+            circle[counterA].classList.add('bg-black');
           }
-          // 左移
-          function moveLeft(video, page) {
+          // B
+          function moveRightB(video, page) {
             const element = document.querySelectorAll(video);
-            if (counter > 0) {
-              counter--;
+            if (counterB < Math.floor(element.length - 1)) {
+              counterB++;
+            }
+
+            directionX(element, counterB);
+
+            const circle = document.querySelector(page).childNodes;
+            circle.forEach(function (circle) {
+              circle.classList.remove('bg-black');
+            });
+
+            circle[counterB].classList.add('bg-black');
+          }
+          // C
+          function moveRightC(video, page) {
+            const element = document.querySelectorAll(video);
+            if (counterC < Math.floor(element.length - 1)) {
+              counterC++;
+            }
+
+            directionX(element, counterC);
+
+            const circle = document.querySelector(page).childNodes;
+            circle.forEach(function (circle) {
+              circle.classList.remove('bg-black');
+            });
+
+            circle[counterC].classList.add('bg-black');
+          }
+          // 左移 A
+          function moveLeftA(video, page) {
+            const element = document.querySelectorAll(video);
+            if (counterA > 0) {
+              counterA--;
             } else {
-              counter = 0;
+              counterA = 0;
             }
 
-            directionX(element, counter);
+            directionX(element, counterA);
 
             const circle = document.querySelector(page).childNodes;
             circle.forEach(function (circle) {
               circle.classList.remove('bg-black');
             });
 
-            circle[counter].classList.add('bg-black');
+            circle[counterA].classList.add('bg-black');
           }
-          // 選擇點換頁
-          function choose(e) {
-            const data = e.path[0].dataset.id;
-            const videos = [...e.path[2].childNodes[1].childNodes].slice(1, -1);
+          // B
+          function moveLeftB(video, page) {
+            const element = document.querySelectorAll(video);
+            if (counterB > 0) {
+              counterB--;
+            } else {
+              counterB = 0;
+            }
 
-            directionX(videos, data);
+            directionX(element, counterB);
 
-            const circles = e.path[1].childNodes;
-            circles.forEach((circle) => {
+            const circle = document.querySelector(page).childNodes;
+            circle.forEach(function (circle) {
               circle.classList.remove('bg-black');
             });
-            circles[data].classList.add('bg-black');
-            counter = data;
+
+            circle[counterB].classList.add('bg-black');
+          }
+          // C
+          function moveLeftC(video, page) {
+            const element = document.querySelectorAll(video);
+            if (counterC > 0) {
+              counterC--;
+            } else {
+              counterC = 0;
+            }
+
+            directionX(element, counterC);
+
+            const circle = document.querySelector(page).childNodes;
+            circle.forEach(function (circle) {
+              circle.classList.remove('bg-black');
+            });
+
+            circle[counterC].classList.add('bg-black');
           }
           // back-to-top-arr
           window.addEventListener('scroll', function () {
@@ -681,12 +809,17 @@
             itsOk,
             stillTalk,
             PBS,
-            counter,
+            counterA,
+            counterB,
+            counterC,
             directionX,
             toTitle,
-            moveLeft,
-            moveRight,
-            choose,
+            moveLeftA,
+            moveLeftB,
+            moveLeftC,
+            moveRightA,
+            moveRightB,
+            moveRightC,
             resize,
             sizeAdjust,
           };
