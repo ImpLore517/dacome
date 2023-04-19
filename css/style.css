@@ -611,6 +611,16 @@ footer {
   font-size: 18px;
 }
 
+@media screen and (max-width: 620px) {
+  .itsOkVideo iframe,
+  .stillTalkVideo iframe,
+  .PBSVideo iframe {
+    width: 90vw !important;
+    max-width: 560px;
+    margin: 0;
+  }
+}
+
 @media screen and (max-width: 800px) {
   /* nav */
   .nav-center {
@@ -733,8 +743,7 @@ footer {
   .itsOkVideo iframe,
   .stillTalkVideo iframe,
   .PBSVideo iframe {
-    width: 100vw;
-    border: 3px solid black;
+    width: 95vw;
     margin: 0;
   }
 
